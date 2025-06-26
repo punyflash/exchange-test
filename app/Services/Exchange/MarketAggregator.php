@@ -2,11 +2,11 @@
 
 namespace App\Services\Exchange;
 
+use App\Services\Exchange\Clients\BaseClient;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
-use App\Services\Exchange\Clients\BaseClient;
 
 class MarketAggregator
 {
@@ -22,9 +22,8 @@ class MarketAggregator
 
     public function getPrices(): Collection
     {
-        $prices = Http::pool(fn (Pool $pool) =>
-            collect($this->exchanges)
-                ->map(fn (BaseClient $exchange, string|int $key) => $exchange->getPrices($pool->as($key)))
+        $prices = Http::pool(fn (Pool $pool) => collect($this->exchanges)
+            ->map(fn (BaseClient $exchange, string|int $key) => $exchange->getPrices($pool->as($key)))
         );
 
         $prices = collect($prices)
@@ -43,9 +42,8 @@ class MarketAggregator
 
     public function getPrice(string $symbol): Collection
     {
-        $prices = Http::pool(fn (Pool $pool) =>
-            collect($this->exchanges)
-                ->map(fn (BaseClient $exchange, string|int $key) => $exchange->getPrice($symbol, $pool->as($key)))
+        $prices = Http::pool(fn (Pool $pool) => collect($this->exchanges)
+            ->map(fn (BaseClient $exchange, string|int $key) => $exchange->getPrice($symbol, $pool->as($key)))
         );
 
         return collect($prices)

@@ -5,7 +5,6 @@ namespace App\Services\Exchange\Clients;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 abstract class BaseClient
@@ -28,7 +27,7 @@ abstract class BaseClient
 
     abstract public function formatPrice(Response $data, string $symbol): ?float;
 
-    abstract public function getPrices(?PendingRequest $request = null): Response | PromiseInterface;
+    abstract public function getPrices(?PendingRequest $request = null): Response|PromiseInterface;
 
-    abstract public function getPrice(string $symbol, ?PendingRequest $request = null): Response | PromiseInterface;
+    abstract public function getPrice(string $symbol, ?PendingRequest $request = null): Response|PromiseInterface;
 }

@@ -5,7 +5,6 @@ namespace App\Services\Exchange\Clients;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Collection;
 
 class WhitebitClient extends BaseClient
 {
@@ -23,13 +22,13 @@ class WhitebitClient extends BaseClient
         return $data->json("$symbol.last_price");
     }
 
-    public function getPrices(?PendingRequest $request = null): Response | PromiseInterface
+    public function getPrices(?PendingRequest $request = null): Response|PromiseInterface
     {
-        return $this->client($request)->get("/ticker");
+        return $this->client($request)->get('/ticker');
     }
 
-    public function getPrice(string $symbol, ?PendingRequest $request = null): Response | PromiseInterface
+    public function getPrice(string $symbol, ?PendingRequest $request = null): Response|PromiseInterface
     {
-        return $this->client($request)->get("/ticker");
+        return $this->client($request)->get('/ticker');
     }
 }

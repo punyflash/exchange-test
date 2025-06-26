@@ -43,7 +43,7 @@ class CryptoCompare extends Command
                 'max' => array_search($max = max($items), $items),
                 ...($this->option('with-income')
                     ? ['income' => $this->income($min, $max)]
-                    : [])
+                    : []),
             ])
             ->sortBy(
                 $this->option('with-income') ? 'income' : 'symbol',
@@ -55,6 +55,6 @@ class CryptoCompare extends Command
 
     protected function income(float $min, float $max): string
     {
-        return round(($max - $min) / $min * 100, 2) . '%';
+        return round(($max - $min) / $min * 100, 2).'%';
     }
 }

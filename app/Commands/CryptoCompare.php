@@ -7,7 +7,7 @@ use LaravelZero\Framework\Commands\Command;
 
 class CryptoCompare extends Command
 {
-    protected $signature = 'app:crypto:compare
+    protected $signature = 'crypto:compare
         {symbol? : The crypto pair to compare (ex. CUR1_CUR2)}
         {--I|with-income : Include exchange income}';
 
